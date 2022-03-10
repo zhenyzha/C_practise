@@ -1,0 +1,21 @@
+#include <stdio.h>
+void pound(int n); //函数原型声明，表明该函数接受一个int类型的参数，下面的带入会自动转换
+int main(void)
+{
+    int times = 5;
+    char ch = '!';  //ASCII 码是33
+    float f = 6.0;
+    
+    pound(times);   //这里多次调用函数pound
+    pound(ch);
+    pound(f);
+  
+    return 0;
+}
+
+void pound(int n)   //这里定义了函数的具体内容
+{
+    while (n-- > 0)
+        printf("#");
+    printf("\n");
+}
