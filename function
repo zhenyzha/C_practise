@@ -84,5 +84,26 @@ void display(char cr, int lines, int width)
 }
 
 
+//用指针传递地址
+#include <stdio.h>
+void interchange(int * u, int * v);
+
+int main(void)
+{
+    int x =5, y = 10;
+    printf("Originally x = %d and y = %d.\n", x, y);
+    interchange(&x, &y); //把地址发送给函数
+    printf("Now x = %d and y = %d.\n", x, y);
+    
+    return 0;
+}
+
+void interchange(int * u, int * v)
+{
+    int temp;
+    temp = *u;  //temp 获得u 所指向对象的值
+    *u = *v;    //x = y（的值）
+    *v = temp;  //y = temp(x的值)
+}
 
 
