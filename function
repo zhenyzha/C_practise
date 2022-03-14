@@ -46,3 +46,43 @@ int main(void)
     
     return 0;
 }
+
+//循环加判断
+#include <stdio.h>
+void display(char cr, int lines, int width);   //提前声明display() 函数和它自带的参数类型
+int main(void)
+{
+    char ch;
+    int rows, cols; //行数和列数
+    
+    printf("Enter a character and two int:\n");
+    while ((ch = getchar()) != '\n')
+    {
+        if (scanf("%d %d", &rows, &cols) != 2)
+            break;
+        display(ch, rows, cols);   //注意这里调用了下面的函数display()
+        while (getchar() != '\n') //当获取换行符时跳过
+            continue;
+        printf("Enter another char and two integers;\n");
+        printf("Enter a newline to quit.\n");
+    }
+    printf("Bye.\n");
+    
+    return 0;
+}
+
+void display(char cr, int lines, int width)
+{
+    int row, col;
+    
+    for (row = 1; row <= lines; row++)  //定义从1 开始打印，递增到输入值
+    {
+        for (col = 1; col <= width; col++)
+            putchar(cr);
+        putchar('\n');
+    }
+}
+
+
+
+
