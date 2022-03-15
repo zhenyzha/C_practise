@@ -9,7 +9,23 @@
 里面放了另一个别墅的位置信息现在你手拿"定位器"找到了第一栋别墅从里面得到了你想要的东西 链表的数据部分,
 然后把下一栋别墅的位置计入你的"定位器"再走向下一栋别墅……如此走下去知道走到某地下一栋别墅信息没有了 
 你的旅行结束。这就是链表一次遍历的过程。p=p->next 的含义了吧
+==========================================
+typedef struct          // 定义一个结构体类型：DATA
+{
+    char key[10];       // 结构体成员：key
+    char name[20];      // 结构体成员：name
+    int age;            // 结构体成员：age
+}DATA;
+    
+DATA data;              // 声明一个结构体变量
+DATA *pdata;            // 声明一个指向结构体的指针
+    
+// 访问数据操作如下：
+data.age = 24;          // 结构体变量通过点运算符( . )访问
+pdata->age = 24;        // 指向结构体的指针通过箭头运算符( -> )访问
 
+
+==========================================
 #include <stdio.h>
 void pound(int n); //函数原型声明，表明该函数接受一个int类型的参数，下面的带入会自动转换
 int main(void)
@@ -32,7 +48,7 @@ void pound(int n)   //这里定义了函数的具体内容
     printf("\n");
 }
 
-
+==========================================
 //循环函数
 #include <stdio.h>
 #define SIZE 4
@@ -59,6 +75,7 @@ int main(void)
     return 0;
 }
 
+==========================================
 //循环加判断
 #include <stdio.h>
 void display(char cr, int lines, int width);   //提前声明display() 函数和它自带的参数类型
@@ -95,7 +112,7 @@ void display(char cr, int lines, int width)
     }
 }
 
-
+==========================================
 //用指针传递地址
 #include <stdio.h>
 void interchange(int * u, int * v);
@@ -118,7 +135,7 @@ void interchange(int * u, int * v)
     *v = temp;  //y = temp(x的值)
 }
 
-
+==========================================
 //二维数组，求每年中各个月份的平均值
 #include <stdio.h>
 #define MONTHS 12   //一年的月份数
@@ -161,7 +178,7 @@ int main(void)
     return 0;
 }
 
-
+==========================================
 //用指针打印数组的地址编码
 #include <stdio.h>
 #define SIZE 4
