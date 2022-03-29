@@ -306,3 +306,67 @@ char * s_gets(char * st, int n)
     return ret_val;
 }
 
+
+==========================================
+//结构指针在函数间传递
+#include <stdio.h>
+#include <string.h>
+
+#define NLEN 30
+struct namect{
+    char fname[NLEN];
+    char lname[NLEN];
+    int letters;
+};
+
+void getinfo(struct namect *);
+void makeinfo(struct namect *);
+void showinfo(const struct namect *);
+char * s_gets(char * st, int n);
+
+int main(void)
+{
+    struct namect person;
+    
+    getinfo(&person);       //指针指向的是地址，所以这里要用取地址值
+    makeinfo(&person);
+    showinfo(&person);
+    return 0;
+}
+
+void getinfo(struct namect * pst)
+{
+    printf("Please enter your first name.\n");
+    s_gets(pst->fname, NLEN);                   //这里指针指向第一个元素，为其赋值
+    printf("Please enter your last name.\n");
+    s_gets(pst->lname, NLEN);
+}
+
+void makeinfo(struct namect * pst)
+{
+    pst->letters = strlen(pst->fname) + strlen(pst->lname);  //获取结构体前两个元素，并为第三个赋值
+}
+
+void showinfo(const struct namect * pst)    //因为该函数不改变结构体内容，所以声明为const
+{
+    printf("%s %s, your name contains %d letters.\n",
+           pst->fname, pst->lname, pst->letters);
+}
+
+char * s_gets(char * st, int n)     //定义上面用到的s_gets函数
+{
+    char * ret_val;
+    char * find;
+    
+    ret_val = fgets(st, n, stdin);
+    if (ret_val)
+    {
+        find = strchr(st, '\n');    //查找换行符并将指向换行符的指针，指向空字符
+        if (find)
+            *find = '\0';
+        else
+            while (getchar() != '\n')   //处理余下的字符
+                continue;
+    }
+    return ret_val;
+}
