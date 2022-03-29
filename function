@@ -370,3 +370,77 @@ char * s_gets(char * st, int n)     //定义上面用到的s_gets函数
     }
     return ret_val;
 }
+
+
+==========================================
+//结构体在函数间传递
+
+#include <stdio.h>
+#include <string.h>
+
+#define NLEN 30
+struct namect {
+    char fname[NLEN];
+    char lname[NLEN];
+    int letters;
+};
+
+struct namect getinfo(void);
+struct namect makeinfo(struct namect);  //这里要返回一个结构
+void showinfo(struct namect);
+char * s_gets(char * st, int n);
+
+int main(void)
+{
+    struct namect person;
+    
+    person = getinfo();     //将getinfo 的值 都赋值给结构体person，此时letters还没有被赋值
+    person = makeinfo(person);
+    showinfo(person);
+    
+    return 0;
+}
+
+struct namect getinfo(void)
+{
+    struct namect temp;                 //这里实例化一个temp，返回temp
+    printf("please enter your first name.\n");
+    s_gets(temp.fname, NLEN);
+    printf("Please enter your last name.\n");
+    s_gets(temp.lname, NLEN);
+    
+    return temp;
+}
+
+struct namect makeinfo(struct namect info)  //这里实例化一个info 为letters 赋值，将info返回
+                                            //在上面的调用中 person 代表info（info是参数变量）
+{
+    info.letters = strlen(info.fname) + strlen(info.lname);
+    
+    return info;
+}
+
+void showinfo(struct namect info_2)
+{
+    printf("%s %s, your name contains %d letters.\n",
+           info_2.fname, info_2.lname, info_2.letters);
+}
+
+char * s_gets(char * st, int n)
+{
+    char * ret_val;
+    char * find;
+    
+    ret_val = fgets(st, n, stdin);
+    if (ret_val)
+    {
+        find = strchr(st, '\n');
+        if (find)
+            *find = '\0';
+        else
+            while (getchar() != '\n')
+                continue;
+    }
+    return ret_val;
+}
+
