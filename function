@@ -444,3 +444,95 @@ char * s_gets(char * st, int n)
     return ret_val;
 }
 
+
+==========================================
+//使用malloc 动态分配地址给指针
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#define SLEN 81
+struct namect {
+    char * fname;   //使用指针
+    char * lname;
+    int letters;
+};
+
+void getinfo(struct namect *);  //声明结构体为指针
+void makeinfo(struct namect *);
+void showinfo(const struct namect *);
+void cleanup(struct namect *);
+char * s_gets(char * st, int n);
+
+int main(void)
+{
+    struct namect person;
+    
+    getinfo(&person);   //取地址person，指针所指向的地址
+    makeinfo(&person);
+    showinfo(&person);
+    cleanup(&person);
+    
+    return 0;
+}
+
+void getinfo(struct namect * pst) //pst 是结构体namect 的一个指针
+{
+    char temp[SLEN];    // 临时数组temp
+    printf("Please enter your first name.\n");
+    s_gets(temp, SLEN); //把字符串写入临时数组中
+    // 分配内存用来存储名
+    pst->fname = (char *) malloc(strlen(temp) + 1); //结构体指针指向结构体中一个元素
+                                                    //malloc 返回的是内存首地址指针
+                                                    //这里有可能申请失败，内存不足时
+    // 查看这块内存
+    printf("pst->fname = %lu \n", (strlen(temp)+1));
+    printf("temp = %p \n", temp);
+    // 把temp名拷贝到动态分配的内存（pst->fname）中
+    strcpy(pst->fname, temp);
+    printf("pst->fname = %p \n", temp);
+    printf("Please enter your last name.\n");
+    s_gets(temp, SLEN);
+    pst->lname = (char *) malloc(strlen(temp) + 1);
+    // 查看这块内存
+    printf("pst->lname = %s \n", pst->lname);
+    printf("pst->lname = %p \n", &(pst->lname));
+    strcpy(pst->lname, temp);
+}
+
+void makeinfo(struct namect * pst)
+{
+    pst->letters = strlen(pst->fname) +
+        strlen(pst->lname);
+}
+
+void showinfo(const struct namect * pst)
+{
+    printf("%s %s, your name contains %d letters.\n",
+           pst->fname, pst->lname, pst->letters);
+}
+
+void cleanup(struct namect * pst)
+{
+    free(pst->fname);
+    free(pst->lname);
+}
+
+char * s_gets(char * st, int n)
+{
+    char * ret_val;
+    char * find;
+    
+    ret_val = fgets(st, n, stdin);
+    if (ret_val)
+    {
+        find = strchr(st, '\n');
+        if (find)
+            *find = '\0';
+        else
+            while (getchar() != '\n')
+                continue;
+    }
+    return ret_val;
+}
+
