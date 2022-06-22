@@ -43,7 +43,11 @@ int main(void)
 
 void pound(int n)   //这里定义了函数的具体内容
 {
-    while (n-- > 0)
+    while (n-- > 0) /*
+                     等同于
+                     for (int i = 0; i < n; ++i)
+                     意思是n 一直往下减1 直到最后一个值
+                    */
         printf("#");
     printf("\n");
 }
