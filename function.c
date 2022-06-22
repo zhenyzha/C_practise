@@ -65,7 +65,7 @@ int main(void)
     
     printf("SIZE: %d \n", SIZE);
     for (index = 0; index < SIZE; index++)
-        scanf("%d", &score[index]);     //读取用户 4次分数
+        scanf("%d", &score[index]);     //读取用户 4次分数, 并分别获得这四个变量的内存地址
     printf("=====\n");
     for (index = 0; index < SIZE; index++)
         printf("%5d", score[index]);   //输入验证, %5d 数字之间的宽度为5个字符
