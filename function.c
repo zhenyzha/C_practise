@@ -92,7 +92,7 @@ int main(void)
     int rows, cols; //行数和列数
     
     printf("Enter a character and two int:\n");
-    while ((ch = getchar()) != '\n')
+    while ((ch = getchar()) != '\n')    //获取一个字符
     {
         if (scanf("%d %d", &rows, &cols) != 2)
             break;
@@ -114,7 +114,7 @@ void display(char cr, int lines, int width)
     for (row = 1; row <= lines; row++)  //定义从1 开始打印，递增到输入值
     {
         for (col = 1; col <= width; col++)
-            putchar(cr);
+            putchar(cr);                //输出getchar() 获得的字符
         putchar('\n');
     }
 }
