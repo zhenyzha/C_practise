@@ -137,9 +137,9 @@ int main(void)
 void interchange(int * u, int * v)
 {
     int temp;
-    temp = *u;  //temp 获得u 所指向对象的值
-    *u = *v;    //x = y（的值）
-    *v = temp;  //y = temp(x的值)
+    temp = *u;  //temp 获得u 所指向对象的值, 赋值为x的值
+    *u = *v;    //x = y（的值），将x 指针 指向y 地址
+    *v = temp;  //y = temp(x的值)  将y指针 指向保存的 x地址
 }
 
 ==========================================
