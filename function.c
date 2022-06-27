@@ -279,7 +279,7 @@ void stsrt(char *strings [], int num)   // ptstr[ct]元组 实际指向字符串
     
     for (top = 0; top < num - 1; top++)
         for (seek = top + 1; seek < num; seek++)
-        if (strcmp(strings[top], strings[seek]) > 0) /* strcmp() 字符串比较方法
+            if (strcmp(strings[top], strings[seek]) > 0) /* strcmp() 字符串比较方法
     若参数s0 和s1 字符串相同则返回0。
     s0 若大于s1 返回大于 0
     b > a
