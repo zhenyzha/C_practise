@@ -309,7 +309,7 @@ char * s_gets(char * st, int n)
             st[i] = '\0';
             else
                 while (getchar() != '\n') //从控制台流中读取字符，直到按回车键结束
-            continue;
+                    continue;
         }
     return ret_val;
 }
