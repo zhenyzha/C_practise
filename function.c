@@ -247,7 +247,7 @@ int main(void)
 #define LIM 20
 #define HALT ""
 void stsrt(char *strings [], int num);  //字符串排序函数
-char * s_gets(char * st, int n);
+char * s_gets(char * st, int n);        //字符串获取函数
 
 int main(void)
 {
@@ -258,11 +258,11 @@ int main(void)
     
     printf("LIM: %d\n", LIM);
     while (ct < LIM && s_gets(input[ct], SIZE) != NULL
-            && input[ct][0] != '\0')
-    {
-        ptstr[ct] = input[ct]; //设置指针指向字符串
-        ct++;
-    }
+        && input[ct][0] != '\0')
+        {
+            ptstr[ct] = input[ct]; //设置指针指向字符串
+            ct++;
+        }
     stsrt(ptstr, ct);   //字符串排序函数
     puts("\nHere's the sorted list:\n");
     for (k = 0; k < ct; k++)
@@ -279,18 +279,19 @@ void stsrt(char *strings [], int num)   // ptstr[ct]元组 实际指向字符串
     
     for (top = 0; top < num - 1; top++)
         for (seek = top + 1; seek < num; seek++)
-            if (strcmp(strings[top], strings[seek]) > 0) /*若参数s0 和s1 字符串相同则返回0。
-                                                              s0 若大于s1 返回大于 0
-                                                              b > a
-                                                              说明字母靠后，需要调整
-                                                              s0 若小于s1 返回值小于 0
-                                                              a < b
-                                                              top seek 前后两个字符串的比较*/
-            {
-                temp = strings[top];    //temp 指针指向 strings 内含指针字符串的数组
-                strings[top] = strings[seek];
-                strings[seek] = temp;   //调换前后字符串指针的位置
-            }
+        if (strcmp(strings[top], strings[seek]) > 0) /* strcmp() 字符串比较方法
+    若参数s0 和s1 字符串相同则返回0。
+    s0 若大于s1 返回大于 0
+    b > a
+    说明字母靠后，需要调整
+    s0 若小于s1 返回值小于 0
+    a < b
+    top seek 前后两个字符串的比较*/
+    {
+        temp = strings[top];    //temp 指针指向 strings 内含指针字符串的数组
+        strings[top] = strings[seek];
+        strings[seek] = temp;   //调换前后字符串指针的位置
+    }
 }
 
 //字符串获取函数
@@ -301,15 +302,15 @@ char * s_gets(char * st, int n)
     
     ret_val = fgets(st, n, stdin); //读取一行，标准输入流stdin，存在st里
     if (ret_val)
-    {
-        while (st[i] != '\n' && st[i] != '\0')
-            i++;
-        if (st[i] == '\n')  //把换行符变成字符串结尾
+        {
+            while (st[i] != '\n' && st[i] != '\0')
+                i++;
+            if (st[i] == '\n')  //把换行符变成字符串结尾
             st[i] = '\0';
-        else
-            while (getchar() != '\n') //从控制台流中读取字符，直到按回车键结束
-                continue;
-    }
+            else
+                while (getchar() != '\n') //从控制台流中读取字符，直到按回车键结束
+            continue;
+        }
     return ret_val;
 }
 
