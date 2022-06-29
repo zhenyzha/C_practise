@@ -461,7 +461,7 @@ char * s_gets(char * st, int n)
 #include <stdlib.h>
 #define SLEN 81
 struct namect {
-    char * fname;   //使用指针
+    char * fname;   //使用指针，这里没有提前分配空间
     char * lname;
     int letters;
 };
