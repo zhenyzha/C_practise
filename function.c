@@ -652,3 +652,29 @@ double sum(const struct funds money [], int n)
     return (total);
 }
 
+
+==========================================
+/* a++ 先赋值后运算，++a 先运算后赋值
+   存储在静态数据区的变量会在程序刚开始运行时就完成初始化，
+   也是唯一的一次初始化。共有两种变量存储在静态存储区：
+   全局变量和 static 变量，只不过和全局变量比起来，static 可以控制变量的可见范围. 
+*/
+    
+#include <stdio.h>
+
+int func(void){
+    static int counter = 1;  //对main() 来说 counter的声明时隐藏的，所以每次都会带入新的值
+    
+    return ++counter;
+}
+
+int main(){
+    int answer;
+    
+    answer = func() - func() * func();  //2 - 3 * 4
+    printf("answer: %d\n", answer);
+}    
+    
+    
+    
+    
